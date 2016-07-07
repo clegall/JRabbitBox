@@ -20,10 +20,10 @@ echo -e "${CBLUE}   / __  / __ \| |/_/                   $CEND "
 echo -e "${CBLUE}  / /_/ / /_/ />  <                     $CEND "
 echo -e "${CBLUE} /_____/\____/_/|_|                     $CEND "
 echo -e "${CBLUE}                                        $CEND "
-echo -e "${CGREEN} http://www.jrabbit.org $CEND "
-echo -e "${CGREEN} Email: contact@jrabbit.org $CEND "
-echo -e "${CGREEN} Author: warezcmpt $CEND "
-echo -e "${CGREEN} Version: 2.0 $CEND "
+echo -e "${CGREEN} http://www.kolgate.xyz $CEND "
+echo -e "${CGREEN} Email: contact@kolgate.xyz $CEND "
+echo -e "${CGREEN} Author: warezcmpt && kolgate $CEND "
+echo -e "${CGREEN} Version: 0.1 $CEND "
 
 #Test version Debian
 VERSION1=`sed -n 1p /etc/debian_version`
@@ -32,7 +32,7 @@ VERSION=${VERSION1:0:1}
 # controle droits utilisateur
 var2=`sed -n 2p ~/language`
 if [ $(id -u) -ne 0 ]; then
-echo -e "${CRED} Sorry only root user can install JRabbitBox $CEND"
+echo -e "${CRED} Sorry only root user can install KolgateBox $CEND"
 exit 1
 fi
 
