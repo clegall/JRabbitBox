@@ -116,37 +116,38 @@ cp -R ~/JRabbitBox/index/* /var/www/base/
 
 #Menu
 cmd=(dialog --separate-output --checklist "KolgateBox " 30 76 24)
-options=(03 "CakeBox" on
-25 "Plex" on
-55 "Shellinabox" off
-70 "Reboot" on)
+options=(01 "CakeBox" on
+02 "Plex" off
+03 "Shellinabox" off
+04 "Start page" off
+05 "Reboot" off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 for choice in $choices
 do
     case $choice in
-02)
+01)
 #Cakebox
 chmod +x ./cakebox/cakebox.sh
 source ./cakebox/cakebox.sh
 cd $cwd
 ;;
 
-03)
+02)
 #PLEX
 chmod +x ./plex/plex.sh
 source ./plex/plex.sh
 cd $cwd
 ;;
 
-04)
+03)
 #Shellinabox
 chmod +x ./shellinabox/shellinabox.sh
 source ./shellinabox/shellinabox.sh
 cd $cwd
 ;;
 
-05)		
+04)		
 #Kolgate start page		
 cd /var/www 
 git clone https://github.com/Jedediah04/TARDIStart.git tardistart
@@ -155,7 +156,7 @@ bower install --allow-root
 cd $cwd		
 ;;
 
-06)
+05)
 #Reboot
 chmod +x reboot.sh
 source reboot.sh
