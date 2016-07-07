@@ -20,10 +20,10 @@ echo -e "${CBLUE}   / __  / __ \| |/_/                   $CEND "
 echo -e "${CBLUE}  / /_/ / /_/ />  <                     $CEND "
 echo -e "${CBLUE} /_____/\____/_/|_|                     $CEND "
 echo -e "${CBLUE}                                        $CEND "
-echo -e "${CGREEN} http://www.jrabbit.org $CEND "
-echo -e "${CGREEN} Email: contact@jrabbit.org $CEND "
-echo -e "${CGREEN} Author: warezcmpt $CEND "
-echo -e "${CGREEN} Version: 2.0 $CEND "
+echo -e "${CGREEN} http://www.kolgate.xyz $CEND "
+echo -e "${CGREEN} Email: contact@kolgate.xyz $CEND "
+echo -e "${CGREEN} Author: warezcmpt && kolgate $CEND "
+echo -e "${CGREEN} Version: 0.1 $CEND "
 
 #Test version Debian
 VERSION1=`sed -n 1p /etc/debian_version`
@@ -32,7 +32,7 @@ VERSION=${VERSION1:0:1}
 # controle droits utilisateur
 var2=`sed -n 2p ~/language`
 if [ $(id -u) -ne 0 ]; then
-echo -e "${CRED} Sorry only root user can install JRabbitBox $CEND"
+echo -e "${CRED} Sorry only root user can install KolgateBox $CEND"
 exit 1
 fi
 
@@ -43,7 +43,7 @@ if [ $VERSION  == "8" ] ; then
 folder="/var/www/base"
 if [ ! -d "$folder" ] ; then
 			cd /tmp
-			git clone https://github.com/exrat/rutorrent-bonobox
+			git clone https://github.com/clegall/rutorrent-bonobox
 			cd rutorrent-bonobox
 			sed -i 's/reboot/#reboot/g' bonobox.sh
 			sed -i 's/source-#reboot/source-reboot/g' bonobox.sh
@@ -92,12 +92,12 @@ Email: $email <br>" >> /var/www/base/config.txt
 #Install Dialog
 apt-get -y --force-yes install dialog sudo
 
-#if [ ! -d "/var/www/base/index_fichiers/" ]
-#then
+if [ ! -d "/var/www/base/index_fichiers/" ]
+then
 
-#JRabbit Index
-#mv /var/www/base/index.html /var/www/base/bonoboxindex.html
-#cp -R ~/JRabbitBox/index/* /var/www/base/
+JRabbit Index
+mv /var/www/base/index.html /var/www/base/bonoboxindex.html
+cp -R ~/JRabbitBox/index/* /var/www/base/
 
 #sed -i "\$awww-data ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
 
@@ -115,147 +115,48 @@ apt-get -y --force-yes install dialog sudo
 #fi
 
 #Menu
-cmd=(dialog --separate-output --checklist "JRabbitBox " 30 76 24)
-options=(01 "Security" off
-02 "Rtorrent Limit User Space" off
-03 "CakeBox" off
-05 "MySQL / Adminer (PHPmyadmin)" off
-10 "LXDE/VNC" off
-20 "Handbrake + MKVToolNix" off
-25 "Plex" off
-30 "Openvpn" off
-40 "Squid" off
-45 "Wordpress" off
-47 "Pydio" off
-50 "ZNC" off
-55 "Shellinabox" off
-60 "SCP (download)" off
-65 "JRabbitMux" off
-66 "JRabbitSync" off
-70 "Reboot" on)
+cmd=(dialog --separate-output --checklist "KolgateBox " 30 76 24)
+options=(01 "CakeBox" on
+02 "Plex" off
+03 "Shellinabox" off
+04 "Start page" off
+05 "Reboot" off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 for choice in $choices
 do
     case $choice in
 01)
-#Security
-cd $cwd
-chmod +x ./security/security.sh
-source ./security/security.sh
-cd $cwd
-;;
-
-02)
-#Rtorrent limit
-chmod +x ./rtorrent/RtorrentLimit.sh
-source ./rtorrent/RtorrentLimit.sh
-cd $cwd
-;;
-
-03)
 #Cakebox
 chmod +x ./cakebox/cakebox.sh
 source ./cakebox/cakebox.sh
 cd $cwd
 ;;
 
-05)
-#MySQL / PHPmyadmin
-chmod +x ./phpmysql/phpmysql.sh
-source ./phpmysql/phpmysql.sh
-cd $cwd
-;;
-
-10)
-#LXDE/VNC
-chmod +x ./desktop/desktop.sh
-source ./desktop/desktop.sh
-cd $cwd
-;;
-
-20)
-#Encode Handbrake + MKVToolNix
-chmod +x ./encode/encode.sh
-source ./encode/encode.sh
-cd $cwd
-;;
-
-25)
+02)
 #PLEX
 chmod +x ./plex/plex.sh
 source ./plex/plex.sh
 cd $cwd
 ;;
 
-30)
-#OpenVPN
-chmod +x ./openvpn/openvpn.sh
-source ./openvpn/openvpn.sh
-cd $cwd
-;;
-
-40)
-#Squid
-chmod +x ./squid/squid.sh
-source ./squid/squid.sh
-cd $cwd
-;;
-
-45)
-#Wordpress
-chmod +x ./wordpress/wordpress.sh
-source ./wordpress/wordpress.sh
-cd $cwd
-;;
-
-47)
-#Pydio
-chmod +x ./pydio/pydio.sh
-source ./pydio/pydio.sh
-cd $cwd
-;;
-
-50)
-#ZNC
-chmod +x ./znc/znc.sh
-source ./znc/znc.sh
-cd $cwd
-;;
-
-55)
+03)
 #Shellinabox
 chmod +x ./shellinabox/shellinabox.sh
 source ./shellinabox/shellinabox.sh
 cd $cwd
 ;;
 
-60)
-#SCP
-chmod +x ./scp/scp.sh
-source ./scp/scp.sh
-cd $cwd
+04)		
+#Kolgate start page		
+cd /var/www 
+git clone https://github.com/Jedediah04/TARDIStart.git tardistart
+cd tardistart
+bower install --allow-root		
+cd $cwd		
 ;;
 
-65)
-#JRabbitMux
-cd ~/
-git clone https://github.com/warezcmpt/JRabbitMux
-cd JRabbitMux
-chmod a+x JRabbitMux.sh
-cd $cwd
-;;
-
-66)
-#JRabbitSync
-cd ~/
-git clone https://github.com/warezcmpt/JRabbitSync
-chmod a+x ~/JRabbitSync/Install_JRabbitSync.sh
-source ~/JRabbitSync/Install_JRabbitSync.sh 
-cd $cwd
-;;
-
-70)
+05)
 #Reboot
 chmod +x reboot.sh
 source reboot.sh
@@ -266,6 +167,6 @@ cd $cwd
 done
 
 else
-echo -e "${CRED} JRabbitBox is only supported by Debian 8 Jessie SORRY $CEND"
+echo -e "${CRED} KolgateBox is only supported by Debian 8 Jessie SORRY $CEND"
 exit 1
 fi
