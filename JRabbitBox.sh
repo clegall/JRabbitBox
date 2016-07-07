@@ -146,6 +146,15 @@ source ./shellinabox/shellinabox.sh
 cd $cwd
 ;;
 
+05)		
+#Kolgate start page		
+cd /var/www 
+git clone https://github.com/Jedediah04/TARDIStart.git tardistart
+cd tardistart
+bower install --allow-root		
+cd $cwd		
+;;
+
 06)
 #Reboot
 chmod +x reboot.sh
@@ -157,6 +166,6 @@ cd $cwd
 done
 
 else
-echo -e "${CRED} JRabbitBox is only supported by Debian 8 Jessie SORRY $CEND"
+echo -e "${CRED} KolgateBox is only supported by Debian 8 Jessie SORRY $CEND"
 exit 1
 fi
