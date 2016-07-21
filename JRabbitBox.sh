@@ -92,12 +92,12 @@ Email: $email <br>" >> /var/www/base/config.txt
 #Install Dialog
 apt-get -y --force-yes install dialog sudo
 
-if [ ! -d "/var/www/base/index_fichiers/" ]
-then
+#if [ ! -d "/var/www/base/index_fichiers/" ]
+#then
 
-JRabbit Index
-mv /var/www/base/index.html /var/www/base/bonoboxindex.html
-cp -R ~/JRabbitBox/index/* /var/www/base/
+#JRabbit Index
+#mv /var/www/base/index.html /var/www/base/bonoboxindex.html
+#cp -R ~/JRabbitBox/index/* /var/www/base/
 
 #sed -i "\$awww-data ALL=(ALL) NOPASSWD:ALL" /etc/sudoers
 
